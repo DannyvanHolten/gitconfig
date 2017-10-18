@@ -1,0 +1,93 @@
+[core]
+	excludesfile = /Users/dannyvanholten/.gitignore_global
+[user]
+        email = info@dannyvanholten.com
+        name = Danny van Holten
+[color]
+        branch = auto
+        diff = auto
+        status = auto
+[color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+[color "diff"]
+        meta = yellow bold
+        frag = magenta bold
+        old = red bold
+        new = green bold
+[color "status"]
+        added = yellow
+        changed = green
+        untracked = cyan
+[alias]
+        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+        
+	s = status
+        
+	st = stash
+	sta = stash apply
+
+	a = !git add -A 
+	
+	c = commit
+	cm = commit -m
+	
+	b = branch --no-merged
+	ba = branch
+	bm = branch --merged
+        bd = branch -d
+	bD = branch -D
+	
+	bdo = "!f() { BRANCH=$1; shift; git push origin --delete $@ $BRANCH; }; f"
+	fd = "!f() { FEATURE=$1; shift; git push origin --delete $@ feature/$FEATURE; }; f"
+	rd = "!f() { RELEASE=$1; shift; git push origin --delete $@ release/$RELEASE; }; f"
+	hd = "!f() { HOTFIX=$1; shift; git push origin --delete $@ hotifx/$HOTFIX; }; f"
+
+	p = push
+	pt = push --tags
+	pd = push origin develop
+        pm = push origin master
+
+	pl = pull 
+        pld = pull origin develop
+        plm = pull origin master
+
+	t = tag
+      
+	fs = flow feature start
+	rs = flow release start
+	hs = flow hotfix start			
+
+	fp = flow feature publish
+	rp = flow release publish
+	hp = flow hotfix publish
+	
+	ff = flow feature finish
+	rf = flow release finish
+	hf = flow hotfix finish
+	
+        co = checkout
+        com = checkout master
+	cod = checkout develop    
+	cof = "!f() { FEATURE=$1; shift; git checkout $@ feature/$FEATURE; }; f"	
+	cor = "!f() { RELEASE=$1; shift; git checkout $@ release/$RELEASE; }; f"
+	coh = "!f() { HOTFIX=$1; shift; git checkout $@ hotfix/$HOTFIX; }; f"
+	
+	m = merge
+	md = merge --no-ff develop
+        mm = merge --no-ff master
+        mf = "!f() { FEATURE=$1; shift; git merge $@ feature/$FEATURE; }; f"
+        mr = "!f() { RELEASE=$1; shift; git merge $@ release/$RELEASE; }; f"
+        mh = "!f() { HOTFIX=$1; shift; git merge $@ hotfix/$RELEASE; }; f"
+[push]
+	default = simple
+[gitflow "branch"]
+    master = master
+    develop = develop
+[gitflow "prefix"]
+    feature = feature/
+    release = release/
+    hotfix = hotfix/
+    support = support/
+    versiontag = 
